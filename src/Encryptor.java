@@ -47,6 +47,7 @@ public class Encryptor
                 }
             }
         }
+        // if empty (not a character)
         for (int r = 0; r < numRows; r++)
         {
             for (int c = 0; c < numCols; c++)
