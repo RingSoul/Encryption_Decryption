@@ -33,25 +33,16 @@ public class Encryptor
     public void fillBlock(String str)
     {
         int index = 0;
-        while (index < str.length() && index < numRows * numCols)
-        {
-            for (int r = 0; r < numRows; r++)
-            {
-                for (int c = 0; c < numCols; c++)
-                {
-                    if (index < str.length())
-                    {
-                        letterBlock[r][c] = str.substring(index, index+1);
-                        index++;
-                    }
-                }
-            }
-        }
         for (int r = 0; r < numRows; r++)
         {
             for (int c = 0; c < numCols; c++)
             {
-                if (letterBlock[r][c] == null)
+                if (index < str.length())
+                {
+                    letterBlock[r][c] = str.substring(index, index+1);
+                    index++;
+                }
+                else
                 {
                     letterBlock[r][c] = "A";
                 }
