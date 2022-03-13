@@ -216,7 +216,7 @@ public class Main {
       System.out.println("  ACTUAL: " + actualEncrypted5);
     }
 
-/*
+
     // -------------------------------------
     // ---- TEST PART D: decryptMessage ----
     // -------------------------------------
@@ -289,7 +289,7 @@ public class Main {
       System.out.println("EXPECTED: " + expectedDecrypted6);
       System.out.println("  ACTUAL: " + actualDecrypted6);
     }
-*/
+
     }
 
     public static void print2DArray(String[][] arr)
