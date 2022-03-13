@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Encryptor
 {
     /** A two-dimensional array of single-character strings, instantiated in the constructor */
@@ -124,6 +126,54 @@ public class Encryptor
     public String decryptMessage(String encryptedMessage)
     {
         String result = "";
+
+        //
+        ArrayList<String[][]> arrays = new ArrayList<String[][]>();
+        int divide = numRows * numCols;
+        while (encryptedMessage.equals("") == false)
+        {
+            String current = encryptedMessage.substring(0, divide); // one 2D array
+            encryptedMessage = encryptedMessage.substring(divide);
+            String[][] array = new String[numCols][numRows];
+            int rowIndex = 0;
+            while (current.equals("") == false)
+            {
+                String row = current.substring(0, numRows);
+                current = current.substring(numRows);
+                for (int i = 0; i < row.length(); i++)
+                {
+                    array[rowIndex][i] = row.substring(i, i+1);
+                }
+                rowIndex++;
+            }
+            for (int c = array[0].length - 1; c >= 0; c--)
+            {
+                for (int r = array.length - 1; r >= 0; r--)
+                {
+                    if (array[r][c].equals("A"))
+                    {
+                        array[r][c] = "";
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            arrays.add(array);
+        }
+        //
+        for (String[][] array : arrays)
+        {
+            for (int c = 0; c < array[0].length; c++)
+            {
+                for (int r = 0; r < array.length; r++)
+                {
+                    result += array[r][c];
+                }
+            }
+        }
+
         return result;
     }
 
