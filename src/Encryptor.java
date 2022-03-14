@@ -24,6 +24,14 @@ public class Encryptor
         return letterBlock;
     }
 
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
+    }
+
     /** Places a string into letterBlock in row-major order.
      *
      *   @param str  the string to be processed
