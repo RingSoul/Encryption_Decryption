@@ -140,35 +140,59 @@ public class Encryptor
         int divide = numRows * numCols;
         while (encryptedMessage.equals("") == false)
         {
-            String current = encryptedMessage.substring(0, divide); // one 2D array
-            encryptedMessage = encryptedMessage.substring(divide);
-            String[][] array = new String[numCols][numRows];
-            int rowIndex = 0;
-            while (current.equals("") == false)
-            {
-                String row = current.substring(0, numRows);
-                current = current.substring(numRows);
-                for (int i = 0; i < row.length(); i++)
-                {
-                    array[rowIndex][i] = row.substring(i, i+1);
-                }
-                rowIndex++;
-            }
-            for (int c = array[0].length - 1; c >= 0; c--)
-            {
-                for (int r = array.length - 1; r >= 0; r--)
-                {
-                    if (array[r][c].equals("A"))
-                    {
-                        array[r][c] = "";
+            if (divide <= encryptedMessage.length()) {
+                String current = encryptedMessage.substring(0, divide); // one 2D array
+                encryptedMessage = encryptedMessage.substring(divide);
+                String[][] array = new String[numCols][numRows];
+                int rowIndex = 0;
+                while (current.equals("") == false) {
+                    String row = current.substring(0, numRows);
+                    current = current.substring(numRows);
+                    for (int i = 0; i < row.length(); i++) {
+                        array[rowIndex][i] = row.substring(i, i + 1);
                     }
-                    else
-                    {
-                        break;
+                    rowIndex++;
+                }
+                // remove A
+                for (int c = array[0].length - 1; c >= 0; c--) {
+                    for (int r = array.length - 1; r >= 0; r--) {
+                        if (array[r][c].equals("A")) {
+                            array[r][c] = "";
+                        } else {
+                            break;
+                        }
                     }
                 }
+                arrays.add(array);
             }
-            arrays.add(array);
+            else
+            {
+                String current = encryptedMessage; // one 2D array
+                encryptedMessage = "";
+                String[][] array = new String[numCols][numRows];
+                int rowIndex = 0;
+                while (current.equals("") == false) {
+                    String row = current.substring(0, numRows);
+                    current = current.substring(numRows);
+                    for (int i = 0; i < row.length(); i++) {
+                        array[rowIndex][i] = row.substring(i, i + 1);
+                    }
+                    rowIndex++;
+                }
+                // remove A
+                for (int c = array[0].length - 1; c >= 0; c--) {
+                    for (int r = array.length - 1; r >= 0; r--) {
+                        if (array[r][c] != null) {
+                            if (array[r][c].equals("A")) {
+                                array[r][c] = "";
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                }
+                arrays.add(array);
+            }
         }
         //
         for (String[][] array : arrays)
